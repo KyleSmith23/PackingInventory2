@@ -1,4 +1,13 @@
-﻿
+﻿Pack pack = new Pack(10, 10, 10);
+InventoryItem arrow1 = new Arrow();
+InventoryItem rope1 = new Rope();
+
+pack.Add(arrow1);
+pack.Add(rope1);
+
+
+
+
 
 
 
@@ -56,17 +65,18 @@ public class Sword : InventoryItem
 
 public class Pack
 {
-    public InventoryItem[] PackItems { get; set; }
+    public InventoryItem[] PackItems {  get; set; }
     public int TotalItems { get; set; }
     public double MaxVolume { get; set; }
     public double MaxWeight { get; set; }
     public double TotalWeight { get; set; }
     public double TotalVolume { get; set; }
 
-    public Pack(double maxWeight, double maxVolume)
+    public Pack(double maxWeight, double maxVolume, int maxItems)
     {
         MaxWeight = maxWeight;
         MaxVolume = maxVolume;
+        PackItems = new InventoryItem[maxItems];
     }
 
     public bool Add(InventoryItem item)
@@ -76,9 +86,8 @@ public class Pack
         {
             TotalWeight += item.Weight;
             TotalVolume += item.Volume;
-            PackItems.Append(item);
+            PackItems.Append(item);          
             TotalItems++;
-
             return true;
         }
         return false;
